@@ -1,0 +1,65 @@
+Changes applied to vanilla IPython 1.1.0:
+
+- IPython/config/application.py
+line 153: set default log level to debug
+log_level = Enum((0,10,20,30,40,50,'DEBUG','INFO','WARN','ERROR','CRITICAL'),
+                    default_value=logging.DEBUG,#logging.WARN,
+                    config=True,
+                    help="Set the log level by value or name.")
+
+- IPython/kernel/zmq/ipkernel.py
+line 239: comment out signal handler setup
+#sig = signal(SIGINT, default_int_handler)
+
+line 244: comment out finally block
+#finally:
+#    signal(SIGINT, sig)
+
+line 498: comment out message debug logging
+#self.log.debug("%s", msg)
+
+line 541: comment out message debug logging
+#self.log.debug("%s", msg)
+
+line 552: comment out message debug logging
+#self.log.debug("%s", msg)
+
+line 566: comment out IOLoop shutdown
+#loop = ioloop.IOLoop.instance()
+#loop.add_timeout(time.time()+0.1, loop.stop)
+
+- IPython/kernel/zmq/kernelapp.py
+line 26: import random as pid replacement
+import random
+
+line 286: use random number as pid replacement
+self.connection_file = "kernel-%s.json" % random.randrange(1, 1000) # os.getpid()
+
+line 433: comment out init_poller
+#self.init_poller()
+
+line 440: comment out init_signal
+#self.init_signal()
+
+line 455: comment out poller start
+#if self.poller is not None:
+#    self.poller.start()
+
+- IPython/kernel/zmq/session.py
+line 126: disable message signing
+#cfg.Session.key = str_to_bytes(str(uuid.uuid4()))
+cfg.Session.key = str_to_bytes('') # disable messge signing
+
+line 611: comment out pid check
+#if not os.getpid() == self.pid:
+#    io.rprint("WARNING: attempted to send message from fork")
+#    io.rprint(msg)
+#    return
+
+- IPython/testing/iptest.py
+line 35: comment out import subprocess
+#import subprocess
+
+- IPython/utils/_process_posix.py
+line 22: comment out pexpect
+#from IPython.external import pexpect

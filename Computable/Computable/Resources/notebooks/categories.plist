@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>My Notebooks</key>
+	<array/>
+	<key>Examples</key>
+	<array>
+		<string>Aero01_sourceSink.ipynb</string>
+		<string>Aero02_sourceSinkFreestream.ipynb</string>
+		<string>Aero03_doublet.ipynb</string>
+		<string>Aero04_vortex.ipynb</string>
+		<string>Aero05_InfiniteRowOfVortices.ipynb</string>
+		<string>Aero06_vortexLift.ipynb</string>
+		<string>Aero07_methodOfImages.ipynb</string>
+		<string>Aero08_sourceSheet.ipynb</string>
+		<string>Aero09_flowOverCylinder.ipynb</string>
+		<string>Aero10_sourcePanelMethod.ipynb</string>
+		<string>Aero11_vortexSourcePanelMethod.ipynb</string>
+		<string>Lecture-2-Numpy.ipynb</string>
+		<string>Lecture-3-Scipy.ipynb</string>
+		<string>Lecture-4-Matplotlib.ipynb</string>
+		<string>Lecture-5-Sympy.ipynb</string>
+		<string>CFD_01_Step_1.ipynb</string>
+		<string>CFD_02_Step_2.ipynb</string>
+		<string>CFD_03_CFL_Condition.ipynb</string>
+		<string>CFD_04_Step_3.ipynb</string>
+		<string>CFD_05_Step_4.ipynb</string>
+		<string>CFD_07_Step_5.ipynb</string>
+		<string>CFD_08_Step_6.ipynb</string>
+		<string>CFD_09_Step_7.ipynb</string>
+		<string>CFD_10_Step_8.ipynb</string>
+		<string>CFD_12_Step_9.ipynb</string>
+		<string>CFD_13_Step_10.ipynb</string>
+		<string>CFD_15_Step_11.ipynb</string>
+		<string>CFD_16_Step_12.ipynb</string>
+	</array>
+	<key>Computable</key>
+	<array>
+		<string>Welcome.ipynb</string>
+		<string>Computable Icon.ipynb</string>
+	</array>
+</dict>
+</plist>

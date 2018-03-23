@@ -1,0 +1,3 @@
+backend      : Agg
+figure.dpi   : 160
+savefig.dpi  : 160

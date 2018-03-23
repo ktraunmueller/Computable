@@ -1,0 +1,21 @@
+SRCDIR := .
+
+CSOURCES := $(shell find $(SRCDIR) -name "*.c")
+CXXSOURCES := $(shell find $(SRCDIR) -name "*.cxx")
+CPPSOURCES := $(shell find $(SRCDIR) -name "*.cpp")
+OBJECTS  := $(patsubst %.c, %.o, $(CSOURCES))
+CXXOBJECTS  := $(patsubst %.cxx, %.o, $(CXXSOURCES))
+CPPOBJECTS  := $(patsubst %.cpp, %.o, $(CPPSOURCES))
+
+.PHONY: all
+
+all: $(OBJECTS) $(CXXOBJECTS) $(CPPOBJECTS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.cxx
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%.o: %.cpp
+	$(CPP) $(CPPFLAGS) -c $< -o $@

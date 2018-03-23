@@ -1,0 +1,14 @@
+Authors
+=======
+
+Sam de Freyssinet <sam@def.reyssi.net>
+
+Credits
+=======
+
+This script would not have been possible without the following
+resources;
+
+http://www.zeromq.org/build:iphone - Martin Sustrik <sustrik@250bpm.com>
+http://paolodenti.blog.com/2012/07/24/zeromq-ios/ - Paulo Denti <http://paolodenti.blog.com>
+http://tinsuke.wordpress.com/2011/02/17/how-to-cross-compiling-libraries-for-ios-armv6armv7i386/ - Tinsuke Suzuki <http://tinsuke.wordpress.com>

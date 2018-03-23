@@ -1,0 +1,7 @@
+*
+libzmq
+!compile_libzmq_ios_universal
+!LICENSE
+!README.md
+!CREDITS
+!.gitignore

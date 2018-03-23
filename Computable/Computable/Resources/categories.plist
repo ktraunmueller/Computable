@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Differential Equations</key>
+	<array/>
+	<key>Fourier and Wavelets Transforms</key>
+	<array/>
+	<key>Linear Algebra</key>
+	<array/>
+	<key>Uncategorized</key>
+	<array>
+		<string>Square.ipynb</string>
+		<string>Untitled0.ipynb</string>
+		<string>Untitled1.ipynb</string>
+		<string>Untitled2.ipynb</string>
+		<string>Untitled22.ipynb</string>
+		<string>x.ipynb</string>
+		<string>y.ipynb</string>
+		<string>z.ipynb</string>
+	</array>
+</dict>
+</plist>

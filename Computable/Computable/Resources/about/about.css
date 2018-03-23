@@ -1,0 +1,113 @@
+body {
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+    margin: 0 30px 0 0; // top right bottom left
+}
+
+p {
+    margin: 0 0 0.5em 0;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h1 {
+    font-family: "SourceSansPro-Semibold";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h2 {
+    font-family: "SourceSansPro-Semibold";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h3 {
+    font-family: "SourceSansPro-Semibold";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h4 {
+    font-family: "SourceSansPro-Semibold";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h5 {
+    font-family: "SourceSansPro-Semibold";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+li {
+    margin-right: 1em;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.blockquote {
+    margin: 1em 1em 1em 2em;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.blockcode {
+    background-color: #f0f0f0;
+    border: solid 1px #c0c0c0;
+    margin: 1em 0 1em 0;
+    padding: 0.5em 1em;
+    font-family: "DejaVu Sans Mono";
+    font-size: 80%;
+    white-space: pre-wrap;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.bold {
+    font-family: "SourceSansPro-Regular";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.italic {
+    font-family: "SourceSansPro-LightIt";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.bolditalic {
+    font-family: "SourceSansPro-It";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.monospace {
+    font-family: "DejaVu Sans Mono";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+table.about td.label-bold {
+    text-align: right;
+    vertical-align: top;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+table.about td.label {
+    text-align: right;
+    vertical-align: top;
+    padding-right: 10px;
+}
+
+table.about td.credits {
+    text-align: right;
+    vertical-align: bottom;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+table.about td.bold-center {
+    text-align: center;
+    font-weight: bold;
+}
+
+table.about td.small-center {
+    text-align: center;
+    font-size: 60%;
+}

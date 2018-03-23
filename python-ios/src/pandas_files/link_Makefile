@@ -1,0 +1,12 @@
+BINDIR := .
+
+OBJECTS := $(shell find $(BINDIR) -name "*.o")
+
+ALLFILES := $(OBJECTS)
+
+.PHONY: all
+
+all: libpandas.a
+
+libpandas.a: $(OBJECTS)
+	$(AR) r libpandas.a $^

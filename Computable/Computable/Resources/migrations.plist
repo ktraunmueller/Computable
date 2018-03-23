@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1.1</key>
+	<dict>
+		<key>CopyFiles</key>
+		<dict>
+			<key>python-lib/jedi</key>
+			<string>ApplicationSupport/com.microlarge.ios.Computable/python-lib/jedi</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

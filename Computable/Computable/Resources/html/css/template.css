@@ -1,0 +1,83 @@
+body {
+    font-family: "[TextFontFamily]";
+    font-size: [BaseFontSize]px;
+    margin: 0 30px 0 0; // top right bottom left
+}
+
+p {
+    margin: 0 0 0.5em 0;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h1 {
+    font-family: "[HeaderFontFamily]";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h2 {
+    font-family: "[HeaderFontFamily]";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h3 {
+    font-family: "[HeaderFontFamily]";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h4 {
+    font-family: "[HeaderFontFamily]";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+h5 {
+    font-family: "[HeaderFontFamily]";
+    margin: 0.5em 0 0.5em 0;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+li {
+    margin-right: 1em;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.blockquote {
+    margin: 1em 1em 1em 2em;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.blockcode {
+    background-color: #f0f0f0;
+    border: solid 1px #c0c0c0;
+    margin: 1em 0 1em 0;
+    padding: 0.5em 1em;
+    font-family: "[MonospaceFontFamily]";
+    font-size: 80%;
+    white-space: pre-wrap;
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.bold {
+    font-family: "[BoldFontFamily]";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.italic {
+    font-family: "[ItalicFontFamily]";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.bolditalic {
+    font-family: "[BoldItalicFontFamily]";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}
+
+.monospace {
+    font-family: "[MonospaceFontFamily]";
+    -webkit-font-variant-ligatures: no-common-ligatures;
+}

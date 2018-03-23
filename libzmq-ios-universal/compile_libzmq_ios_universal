@@ -1,0 +1,245 @@
+#!/usr/bin/env bash
+
+#
+# Compile libzmq as iOS universal (fat) static library
+# Supported architectures; armv7, armv7s, i386
+#
+# Created by Sam de Freyssinet 
+#
+# Licensed under ISC License 
+# http://opensource.org/licenses/ISC
+# For full terms please read LICENSE included with this project
+#
+# Universal library can be found in build/universal;
+#  "lib" folder contains "libzmq.a" static library
+#  "include" folder contains headers
+#
+# To use in your project follow linking instructions available on the iOS zeromq page
+# http://www.zeromq.org/build:iphone
+
+export BUILD_DIR=`pwd`/build
+export LIBZMQ_VERSION="4.0.4"
+export LIBZMQ_FOLDER="zeromq-${LIBZMQ_VERSION}"
+export LIBZMQ_DIR="`pwd`/${LIBZMQ_FOLDER}"
+export CURRENT_DIR=`pwd`
+export LIBZMQ_FILE="libzmq.a"
+export LIBZMQ_ARMV7_PREFIX="armv7"
+export LIBZMQ_ARMV7S_PREFIX="armv7s"
+export LIBZMQ_I386_PREFIX="i386"
+export LIBZMQ_X86_64_PREFIX="x86_64"
+export LIBZMQ_UNIVERSAL_FILE="libzmq.a"
+export LIBZMQ_UNIVERSAL_PREFIX="universal"
+export ZMQ_BUILD_LOG_FILE=$BUILD_DIR/build.log
+export IOS_DEPLOY_TARGET="7.0"
+export VERSION_NUMBER="1.0.0"
+
+copy_zmq_headers ()
+{
+  echo "Copying libzmq headers into universal library..."
+  mkdir -p ${BUILD_DIR}/${LIBZMQ_UNIVERSAL_PREFIX}/include
+  cp -R ${LIBZMQ_DIR}/include ${BUILD_DIR}/${LIBZMQ_UNIVERSAL_PREFIX}
+}
+
+create_universal_library ()
+{
+  echo "Creating universal static library..."
+  
+  mkdir -p ${BUILD_DIR}/${LIBZMQ_UNIVERSAL_PREFIX}/lib
+
+  lipo -create \
+    "${BUILD_DIR}/${LIBZMQ_ARMV7_PREFIX}/lib/${LIBZMQ_FILE}" \
+    "${BUILD_DIR}/${LIBZMQ_I386_PREFIX}/lib/${LIBZMQ_FILE}" \
+    -output "${BUILD_DIR}/${LIBZMQ_UNIVERSAL_PREFIX}/lib/${LIBZMQ_FILE}"
+
+  echo "Checking fat output file"
+  lipo -info ${BUILD_DIR}/${LIBZMQ_UNIVERSAL_PREFIX}/lib/${LIBZMQ_FILE}
+  
+  copy_zmq_headers
+}
+
+clean_build_dir ()
+{
+  echo "Cleaning up..."
+  if [[ -d ${BUILD_DIR} ]]; then
+    rm -rf ${BUILD_DIR}
+  fi
+
+  mkdir -p ${BUILD_DIR}/${LIBZMQ_ARMV7_PREFIX}
+  #mkdir -p ${BUILD_DIR}/${LIBZMQ_ARMV7S_PREFIX}
+  mkdir -p ${BUILD_DIR}/${LIBZMQ_I386_PREFIX}
+  #mkdir -p ${BUILD_DIR}/${LIBZMQ_X86_64_PREFIX}
+}
+
+setenv_all ()
+{
+  export SDKVER=`xcrun --sdk $TARGET_SDK --show-sdk-version`
+  export IOSSDKROOT=`xcrun --sdk $TARGET_SDK --show-sdk-path`
+  
+  #find the right compiler and linker
+  export CC=$(xcrun -find -sdk $TARGET_SDK clang)
+  export CXX=$(xcrun -find -sdk $TARGET_SDK clang++)
+  
+  export AR=$(xcrun -find -sdk $TARGET_SDK ar)
+  export AS=$(xcrun -find -sdk $TARGET_SDK as)
+  export NM=$(xcrun -find -sdk $TARGET_SDK nm)
+  export LD=$(xcrun -find -sdk $TARGET_SDK ld)
+  export LIBTOOL=$(xcrun -find -sdk $TARGET_SDK libtool)
+  export STRIP=$(xcrun -find -sdk $TARGET_SDK strip)
+  export RANLIB=$(xcrun -find -sdk $TARGET_SDK ranlib)
+  
+  # flags for arm compilation 
+  # (not really arm if building for simlator...but it's all the stuff we're cross comiling for iOS)
+  export CFLAGS="-arch $CPU_ARCHITECTURE"
+  export CFLAGS="$CFLAGS -pipe -no-cpp-precomp"
+  export CFLAGS="$CFLAGS -O -isysroot $IOSSDKROOT"
+  #export CFLAGS="$CFLAGS -miphoneos-version-min=$SDKVER"
+  export CFLAGS="$CFLAGS -I$IOSSDKROOT/usr/include/"
+  export CFLAGS="$CFLAGS -O3"  
+  
+  # this is important for cross-compiling cpp 
+  export CXXFLAGS=${CFLAGS}
+  export CPPFLAGS=${CXXFLAGS}
+  
+  # flags for linker
+  export LDFLAGS="-arch $CPU_ARCHITECTURE"
+  export LDFLAGS="$LDFLAGS -isysroot $IOSSDKROOT"
+  #export LDFLAGS="$LDFLAGS -miphoneos-version-min=$SDKVER"
+  export LDFLAGS="$LDFLAGS -lstdc++"
+  export LDFLAGS="$LDFLAGS -L$IOSSDKROOT/usr/lib/"
+}
+
+setenv_armv7 ()
+{
+  export TARGET_SDK="iphoneos"
+  export CPU_ARCHITECTURE="armv7"
+  export BUILD_HOST="arm-apple-darwin11"
+  #export BUILD_HOST="arm-apple-darwin"
+
+  setenv_all
+}
+
+setenv_armv7s ()
+{
+  export TARGET_SDK="iphoneos"
+  export CPU_ARCHITECTURE="armv7s"
+  export BUILD_HOST="arm-apple-darwin11"
+  #export BUILD_HOST="arm-apple-darwin"
+
+  setenv_all
+}
+
+setenv_i386 ()
+{
+  export TARGET_SDK="iphonesimulator"
+  export CPU_ARCHITECTURE="i386"
+  export BUILD_HOST="i686-apple-darwin10"
+  #export BUILD_HOST="i386-apple-darwin"
+  
+  setenv_all
+}
+
+setenv_x86_64 ()
+{
+  export TARGET_SDK="macosx"
+  export CPU_ARCHITECTURE="x86_64"
+  export BUILD_HOST="i686-apple-darwin13"
+  
+  setenv_all
+}
+
+compile_zmq_armv7 ()
+{
+  setenv_armv7
+  compile_zmq
+}
+
+compile_zmq_armv7s ()
+{
+  setenv_armv7s
+  compile_zmq
+}
+
+compile_zmq_i386 ()
+{
+  setenv_i386
+  compile_zmq
+}
+
+compile_zmq_x86_64 ()
+{
+  setenv_x86_64
+  compile_zmq
+}
+
+compile_zmq ()
+{
+  echo ""
+  echo "Compiling libzmq for ${CPU_ARCHITECTURE}..."
+
+  pushd ${LIBZMQ_FOLDER}
+#  make distclean &> ${ZMQ_BUILD_LOG_FILE} 
+  make clean &> ${ZMQ_BUILD_LOG_FILE}
+  
+  echo "IOSSDKROOT : $IOSSDKROOT"
+  echo "TARGET_SDK : $TARGET_SDK"
+  echo "CC         : $CC"
+  echo "AR         : $AR"
+  echo "CFLAGS     : $CFLAGS"
+  echo "LDFLAGS    : $LDFLAGS"
+  echo "host       : $BUILD_HOST"
+
+  if [[ $CPU_ARCHITECTURE = "x86_64" ]]; then
+    export CFLAGS="$CFLAGS -mmacosx-version-min=$SDKVER"
+    export LDFLAGS="$LDFLAGS -lstdc++ -mmacosx-version-min=$SDKVER"
+    ./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
+      --disable-dependency-tracking --enable-static --disable-shared \
+      --prefix=${BUILD_DIR}/${CPU_ARCHITECTURE} &> ${ZMQ_BUILD_LOG_FILE}
+  else
+    export CFLAGS="$CFLAGS -miphoneos-version-min=$SDKVER"
+    export LDFLAGS="$LDFLAGS -miphoneos-version-min=$SDKVER"
+    ./configure CC="$CC" CXX="$CXX" CPP="$CPP" AR="$AR" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
+      --disable-dependency-tracking --enable-static --disable-shared \
+      --host=${BUILD_HOST} \
+      --prefix=${BUILD_DIR}/${CPU_ARCHITECTURE} &> ${ZMQ_BUILD_LOG_FILE}
+  fi
+
+  make &> ${ZMQ_BUILD_LOG_FILE}
+  make install &> ${ZMQ_BUILD_LOG_FILE}
+
+  popd
+  
+  echo "Checking output file"
+  lipo -info ${BUILD_DIR}/${CPU_ARCHITECTURE}/lib/${LIBZMQ_FILE}
+}
+
+begin_compile ()
+{
+  clean_build_dir
+
+  compile_zmq_armv7
+  #compile_zmq_armv7s
+  compile_zmq_i386
+  #compile_zmq_x86_64
+  create_universal_library
+
+  exit 0
+}
+
+verify_libzmq_location ()
+{
+  if [ ! -f $CURRENT_DIR/zeromq-$LIBZMQ_VERSION.tar.gz ] ; then
+    echo "Downloading zeromq source..."
+    curl -L http://download.zeromq.org/zeromq-$LIBZMQ_VERSION.tar.gz > $CURRENT_DIR/zeromq-$LIBZMQ_VERSION.tar.gz
+  fi
+  if [ ! -d $CURRENT_DIR/zeromq-$LIBZMQ_VERSION ]; then
+    tar xzf $CURRENT_DIR/zeromq-$LIBZMQ_VERSION.tar.gz
+  fi
+
+  if [[ ! -f "${LIBZMQ_DIR}/configure" ]] || [[ ! -f "${LIBZMQ_DIR}/zeromq.spec" ]]; then
+    echo "Unable to locate libzmq in ${LIBZMQ_DIR}"
+    exit 1
+  fi
+}
+
+verify_libzmq_location
+begin_compile

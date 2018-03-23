@@ -1,0 +1,12 @@
+BINDIR := .
+
+OBJECTS := $(shell find $(BINDIR) -name "*.o")
+
+ALLFILES := $(OBJECTS)
+
+.PHONY: all
+
+all: libnumpy.a
+
+libnumpy.a: $(OBJECTS)
+	$(AR) r libnumpy.a $^

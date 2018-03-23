@@ -1,0 +1,12 @@
+BINDIR := .
+
+OBJECTS := $(shell find $(BINDIR) -name "*.o")
+
+ALLFILES := $(OBJECTS)
+
+.PHONY: all
+
+all: libmatplotlib.a
+
+libmatplotlib.a: $(OBJECTS)
+	$(AR) r libmatplotlib.a $^

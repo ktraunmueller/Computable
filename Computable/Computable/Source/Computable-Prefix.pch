@@ -1,0 +1,16 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#define iOS7_OR_LATER       (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+#define iOS7_1_OR_LATER     (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_0)
+#define iOS8_OR_LATER       (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1)
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
