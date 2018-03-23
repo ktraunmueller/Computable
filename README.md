@@ -13,6 +13,6 @@ Here's the deal:
 - I will not spend a minute more on this project. This means I won't answer _any_ questions. 
   You will need to figure out stuff yourself.
 - Use the code any way you like. A mention in the acknowledgements would be nice if you use parts of the code.
-- I reserve all rights on the name "Computable" and the app icon. Please don't use them, that's all
+- I reserve all rights to the name "Computable" and the app icon. Please don't use them, that's all
   I'm asking for. To repeat: any derivative work must not be named Computable, nor is it allowed to use my icon.
 - Other than that, enjoy!
