@@ -1,7 +1,7 @@
 ## Computable – IPython for iPad
  
 This repository contains basically the entire source (plus scripts, libraries, and other auxiliaries) 
-of my retired app [Computable](http://computableapp.com/index_old.html), an IPython system for iPad.
+of my retired app Computable, an IPython system for iPad.
 
 Here's the deal:
 - This is not an active or maintained open source project. 
@@ -16,3 +16,5 @@ Here's the deal:
 - I reserve all rights to the name "Computable" and the app icon. Please don't use them, that's all
   I'm asking for. To repeat: any derivative work must not be named Computable, nor is it allowed to use my icon.
 - Other than that, enjoy!
+
+Update: Since the app's website is no longer online, I added some screenshots that show what the app looked like.
