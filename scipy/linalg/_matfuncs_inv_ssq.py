@@ -112,8 +112,18 @@ def _onenormest_m1_power(A, p,
         that is relatively large in norm compared to the input.
 
     """
-    return onenormest(_MatrixM1PowerOperator(A, p),
-            t=t, itmax=itmax, compute_v=compute_v, compute_w=compute_w)
+    if p == 0:
+        return 1
+    elif p == 1:
+        return onenormest(A, t=t, itmax=itmax,
+                compute_v=compute_v, compute_w=compute_w)
+    elif p == 2:
+        return onenormest(A.dot(A), t=t, itmax=itmax,
+                compute_v=compute_v, compute_w=compute_w)
+    else:
+        op = _MatrixM1PowerOperator(A, p)
+        return onenormest(op, t=t, itmax=itmax,
+                compute_v=compute_v, compute_w=compute_w)
 
 
 def _unwindk(z):
