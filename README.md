@@ -18,3 +18,5 @@ Here's the deal:
 - Other than that, enjoy!
 
 Update: Since the app's website is no longer online, I added some screenshots that show what the app looked like.
+
+Oh, and here's a [presentation](https://github.com/ktraunmueller/Vienna/blob/master/CHW061%2C%202014.09.11/TheComputableStory.pdf) about the whole journey of building this app.
